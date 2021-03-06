@@ -7,7 +7,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zenseless.Patterns", "src\Z
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zenseless.Patterns.Tests", "Tests\Zenseless.Patterns.Tests.csproj", "{2D403062-700F-47F3-ADEA-020D9ECD4184}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zenseless.Patterns.Source", "src\Zenseless.Patterns.Source.csproj", "{CD9A109E-7B57-4E97-B86F-15EC529C4D63}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0C16D9F7-4F05-42FE-BB12-2D9774379BF1}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
+		..\..\Zenseless\CHANGELOG.md = ..\..\Zenseless\CHANGELOG.md
+		CONTRIBUTING.md = CONTRIBUTING.md
+		ISSUE_TEMPLATE.md = ISSUE_TEMPLATE.md
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +32,6 @@ Global
 		{2D403062-700F-47F3-ADEA-020D9ECD4184}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D403062-700F-47F3-ADEA-020D9ECD4184}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D403062-700F-47F3-ADEA-020D9ECD4184}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD9A109E-7B57-4E97-B86F-15EC529C4D63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD9A109E-7B57-4E97-B86F-15EC529C4D63}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD9A109E-7B57-4E97-B86F-15EC529C4D63}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD9A109E-7B57-4E97-B86F-15EC529C4D63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
