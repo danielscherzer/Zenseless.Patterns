@@ -6,8 +6,16 @@ using System.Reflection;
 
 namespace Zenseless.Patterns
 {
+	/// <summary>
+	/// Handles loading of embedded resources from the entry assembly
+	/// </summary>
 	public static class Resource
 	{
+		/// <summary>
+		/// Load the resource given by name into a string
+		/// </summary>
+		/// <param name="name">The name of the resource.</param>
+		/// <returns>a string</returns>
 		public static string LoadString(string name)
 		{
 			using var stream = LoadStream(name);
@@ -15,6 +23,11 @@ namespace Zenseless.Patterns
 			return streamReader.ReadToEnd();
 		}
 
+		/// <summary>
+		/// Load the resource given by name into a stream
+		/// </summary>
+		/// <param name="name">The name of the resource.</param>
+		/// <returns>a stream.</returns>
 		public static Stream LoadStream(string name)
 		{
 			var assembly = Assembly.GetEntryAssembly();
@@ -28,6 +41,11 @@ namespace Zenseless.Patterns
 			return stream;
 		}
 
+		/// <summary>
+		/// Returns all resource names that contain the given text
+		/// </summary>
+		/// <param name="text">Text to search for</param>
+		/// <returns>A list of strings</returns>
 		public static IEnumerable<string> Matches(string text)
 		{
 			var assembly = Assembly.GetEntryAssembly();

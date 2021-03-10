@@ -1,5 +1,4 @@
-﻿using Zenseless.Patterns;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Zenseless.Patterns.Tests
 {

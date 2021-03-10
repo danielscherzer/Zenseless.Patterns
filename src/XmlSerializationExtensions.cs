@@ -15,8 +15,8 @@ namespace Zenseless.Patterns
 		/// <summary>
 		/// Deserializes from an XML file into a new class instance of a given type.
 		/// </summary>
+		/// <typeparam name="DataType">The type of the class that will be deserialized.</typeparam>
 		/// <param name="fileName">The file name from which the serialized instance will be restored from.</param>
-		/// <param name="type">The type of the class that will be deserialized.</param>
 		/// <returns>Deserialized class instance</returns>
 		public static DataType? FromXMLFile<DataType>(this string fileName)
 		{
@@ -28,8 +28,8 @@ namespace Zenseless.Patterns
 		/// <summary>
 		/// Deserializes from an XML string into a new class instance of a given type.
 		/// </summary>
+		/// <typeparam name="DataType">The type of the class that will be deserialized.</typeparam>
 		/// <param name="xmlString">XML string from which to deserialize.</param>
-		/// <param name="type">The type of the class that will be deserialized.</param>
 		/// <returns>Deserialized class instance</returns>
 		public static DataType? FromXmlString<DataType>(this string xmlString)
 		{

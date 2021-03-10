@@ -45,16 +45,20 @@ namespace Zenseless.Patterns
 		}
 
 
-		// NOTE: Leave out the finalizer altogether if this class doesn't
-		// own unmanaged resources, but leave the other methods
-		// exactly as they are.
+		/// <summary>
+		/// Leave out the finalizer altogether if this class doesn't
+		/// own unmanaged resources, but leave the other methods
+		/// exactly as they are.
+		/// </summary>
 		~Disposable()
 		{
 			// Finalizer calls Dispose(false)
 			Dispose(false);
 		}
 
-		protected virtual void Dispose(bool disposing)
+		private bool disposed = false;
+
+		private void Dispose(bool disposing)
 		{
 			if (disposed) return;
 			if (disposing)
@@ -63,7 +67,5 @@ namespace Zenseless.Patterns
 				disposed = true;
 			}
 		}
-
-		private bool disposed = false;
 	}
 }
