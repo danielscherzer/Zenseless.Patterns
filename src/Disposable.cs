@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using System.Reflection;
 
@@ -32,6 +33,7 @@ namespace Zenseless.Patterns
 
 		/// <summary>
 		/// Calls <see cref="IDisposable.Dispose()"/> on all fields of type <see cref="IDisposable"/> found on the given object.
+		/// Also calls <see cref="IDisposable.Dispose()"/> on each item of fields of type <see cref="IEnumerable"/>
 		/// </summary>
 		/// <param name="obj"></param>
 		public static void DisposeAllFields(object obj)
@@ -41,6 +43,12 @@ namespace Zenseless.Patterns
 			foreach (var field in allFields.Where(field => typeof(IDisposable).IsAssignableFrom(field.FieldType)))
 			{
 				((IDisposable?)field.GetValue(obj))?.Dispose();
+			}
+			foreach (var field in allFields.Where(field => typeof(IEnumerable).IsAssignableFrom(field.FieldType)))
+			{
+				var enumerable = (IEnumerable?)field.GetValue(obj);
+				if (enumerable is null) break;
+				foreach (var d in enumerable.OfType<IDisposable>()) d.Dispose();
 			}
 		}
 

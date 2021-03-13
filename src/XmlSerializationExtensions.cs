@@ -20,9 +20,11 @@ namespace Zenseless.Patterns
 		/// <returns>Deserialized class instance</returns>
 		public static DataType? FromXMLFile<DataType>(this string fileName)
 		{
-			using StreamReader inFile = new StreamReader(fileName);
-			XmlSerializer formatter = new XmlSerializer(typeof(DataType));
-			return (DataType)formatter.Deserialize(inFile);
+			using StreamReader inFile = new(fileName);
+			XmlSerializer formatter = new(typeof(DataType));
+			var obj = formatter.Deserialize(inFile);
+			if (obj is null) return default;
+			return (DataType)obj;
 		}
 
 		/// <summary>
@@ -33,9 +35,11 @@ namespace Zenseless.Patterns
 		/// <returns>Deserialized class instance</returns>
 		public static DataType? FromXmlString<DataType>(this string xmlString)
 		{
-			using StringReader input = new StringReader(xmlString);
-			XmlSerializer formatter = new XmlSerializer(typeof(DataType));
-			return (DataType)formatter.Deserialize(input);
+			using StringReader input = new(xmlString);
+			XmlSerializer formatter = new(typeof(DataType));
+			var obj = formatter.Deserialize(input);
+			if (obj is null) return default;
+			return (DataType)obj;
 		}
 
 		/// <summary>
@@ -47,8 +51,8 @@ namespace Zenseless.Patterns
 		{
 			if (serializable is null) throw new ArgumentNullException(nameof(serializable));
 
-			XmlSerializer formatter = new XmlSerializer(serializable.GetType());
-			using StreamWriter outfile = new StreamWriter(fileName);
+			XmlSerializer formatter = new(serializable.GetType());
+			using StreamWriter outfile = new(fileName);
 			formatter.Serialize(outfile, serializable);
 		}
 
@@ -59,9 +63,9 @@ namespace Zenseless.Patterns
 		public static string ToXmlString(this object serializable)
 		{
 			if (serializable is null) throw new ArgumentNullException(nameof(serializable));
-			XmlSerializer formatter = new XmlSerializer(serializable.GetType());
-			StringBuilder builder = new StringBuilder();
-			XmlWriterSettings settings = new XmlWriterSettings
+			XmlSerializer formatter = new(serializable.GetType());
+			StringBuilder builder = new();
+			XmlWriterSettings settings = new()
 			{
 				Encoding = Encoding.Default,
 				Indent = false,
