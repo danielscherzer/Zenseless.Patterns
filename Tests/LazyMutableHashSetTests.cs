@@ -40,7 +40,7 @@ namespace Zenseless.Patterns.Tests
 				hs.Add(i + 1); //delay add
 			}
 			var expected = input.Concat(input.Select(i => i + 1)).ToArray();
-			Assert.AreEqual(count, input.Count());
+			Assert.AreEqual(count, input.Length);
 			CollectionAssert.AreEquivalent(expected, hs.ToArray());
 		}
 

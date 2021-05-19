@@ -122,9 +122,9 @@ namespace Zenseless.Patterns
 		}
 
 		private int iterationCount = 0;
-		private readonly HashSet<DataType> items = new HashSet<DataType>(); // O(1) add and removal
-		private readonly HashSet<DataType> toRemove = new HashSet<DataType>();
-		private readonly HashSet<DataType> toAdd = new HashSet<DataType>();
+		private readonly HashSet<DataType> items = new(); // O(1) add and removal
+		private readonly HashSet<DataType> toRemove = new();
+		private readonly HashSet<DataType> toAdd = new();
 		private bool IsIterating => 0 < iterationCount;
 
 		/// <summary>
