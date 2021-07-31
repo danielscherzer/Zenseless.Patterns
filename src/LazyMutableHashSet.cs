@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Zenseless.Patterns
@@ -28,9 +29,9 @@ namespace Zenseless.Patterns
 		}
 
 		/// <summary>
-		/// Queue a list of items to add to the hash set
+		/// Queue a number of items to add to the hash set.
 		/// </summary>
-		/// <param name="other">a lsit of items to add</param>
+		/// <param name="other">The items to add</param>
 		public void Add(IEnumerable<DataType> other)
 		{
 			if (IsIterating)
@@ -90,14 +91,13 @@ namespace Zenseless.Patterns
 		}
 
 		/// <summary>
-		/// Clears the hash set
+		/// Clears the hash set; When iterating this throws an <see cref="InvalidOperationException"/>.
 		/// </summary>
 		public void Clear()
 		{
-
 			items.Clear();
 			toAdd.Clear();
-			toAdd.Clear();
+			toRemove.Clear();
 		}
 
 		/// <summary>
@@ -128,7 +128,7 @@ namespace Zenseless.Patterns
 		private bool IsIterating => 0 < iterationCount;
 
 		/// <summary>
-		/// Gets the number of elements that are contained in a set.
+		/// Gets the number of elements that are currently in the set. Disregards lazy additions and removals
 		/// </summary>
 		public int Count => items.Count;
 
