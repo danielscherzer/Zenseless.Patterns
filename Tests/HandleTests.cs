@@ -22,6 +22,9 @@ namespace Zenseless.Patterns.Tests
 			var typeHandleD = typeof(Handle<double>);
 			Assert.IsFalse(typeHandleF.IsAssignableFrom(typeHandleD));
 			Assert.IsFalse(typeHandleF.IsAssignableTo(typeHandleD));
+			
+			Handle<float> handleF = new();
+			Assert.IsNotInstanceOfType(handleF, typeHandleD);
 		}
 
 		[TestMethod()]
