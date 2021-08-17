@@ -37,7 +37,7 @@ namespace Zenseless.Patterns
 		{
 			get
 			{
-				if(IsCacheDirty)
+				if (IsCacheDirty)
 				{
 					_value = _calculateValue();
 					IsCacheDirty = false;

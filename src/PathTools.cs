@@ -28,7 +28,7 @@ namespace Zenseless.Patterns
 			var path = GetCurrentProcessPath();
 			var dir = Path.GetDirectoryName(path) ?? path;
 			var name = Path.GetFileNameWithoutExtension(path);
-			if(!string.IsNullOrWhiteSpace(timeCodeFormat))
+			if (!string.IsNullOrWhiteSpace(timeCodeFormat))
 			{
 				name += $" {DateTime.Now.ToString(timeCodeFormat)}";
 			}

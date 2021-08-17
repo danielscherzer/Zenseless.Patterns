@@ -14,7 +14,7 @@ namespace Zenseless.Patterns
 		/// </summary>
 		/// <typeparam name="TYPE">An unique type</typeparam>
 		/// <returns></returns>
-		public bool Contains<TYPE>() => types.ContainsKey(typeof(TYPE));
+		public bool Contains<TYPE>() => _types.ContainsKey(typeof(TYPE));
 
 		/// <summary>
 		/// Register an instance of a unique type with this type registry. If the type was already registered it is overwritten.
@@ -23,10 +23,10 @@ namespace Zenseless.Patterns
 		/// <param name="instance">An instance</param>
 		public void RegisterTypeInstance<TYPE>(TYPE instance) where TYPE : class
 		{
-			var type = typeof(TYPE);
 			if (instance is null) throw new ArgumentNullException(nameof(instance));
+			var type = typeof(TYPE);
 			Debug.WriteLineIf(Contains<TYPE>(), $"Overwriting registered type instance {type}.");
-			types[type] = instance;
+			_types[type] = instance;
 		}
 
 		/// <summary>
@@ -34,7 +34,7 @@ namespace Zenseless.Patterns
 		/// </summary>
 		/// <typeparam name="TYPE">An unique type</typeparam>
 		/// <returns>Returns <c>true</c> if the type is successfully found and removed; otherwise, <c>false</c>.</returns>
-		public bool UnregisterTypeInstance<TYPE>() where TYPE : class => types.Remove(typeof(TYPE));
+		public bool UnregisterTypeInstance<TYPE>() where TYPE : class => _types.Remove(typeof(TYPE));
 
 		/// <summary>
 		/// Returns the registered instance of the given type.
@@ -44,13 +44,13 @@ namespace Zenseless.Patterns
 		public TYPE? GetInstance<TYPE>() where TYPE : class
 		{
 			var type = typeof(TYPE);
-			if (types.TryGetValue(type, out var instance))
+			if (_types.TryGetValue(type, out var instance))
 			{
 				return (TYPE)instance;
 			}
 			return null;
 		}
 
-		private readonly Dictionary<Type, object> types = new();
+		private readonly Dictionary<Type, object> _types = new();
 	}
 }

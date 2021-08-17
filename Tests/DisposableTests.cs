@@ -8,7 +8,7 @@ namespace Zenseless.Patterns.Tests
 	[TestClass()]
 	public class DisposableTests
 	{
-		class Test : Disposable
+		private class Test : Disposable
 		{
 			public Stream stream = new MemoryStream();
 			public List<Stream> streams = new() { new MemoryStream(), new MemoryStream() };
