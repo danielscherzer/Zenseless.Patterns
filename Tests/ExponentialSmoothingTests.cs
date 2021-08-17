@@ -4,7 +4,7 @@ using System;
 namespace Zenseless.Patterns.Tests
 {
 	[TestClass]
-	public class ExponentialSmoothingTest
+	public class ExponentialSmoothingTests
 	{
 		[DataTestMethod()]
 		[DataRow(-.01)]
