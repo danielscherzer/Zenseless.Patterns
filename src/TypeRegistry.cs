@@ -21,6 +21,7 @@ namespace Zenseless.Patterns
 		/// </summary>
 		/// <typeparam name="TYPE">An unique type</typeparam>
 		/// <param name="instance">An instance</param>
+		/// <exception cref="ArgumentNullException"/>
 		public void RegisterTypeInstance<TYPE>(TYPE instance) where TYPE : class
 		{
 			if (instance is null) throw new ArgumentNullException(nameof(instance));
