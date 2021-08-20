@@ -43,6 +43,21 @@ namespace Zenseless.Patterns
 		/// <returns>clamped version of x</returns>
 		public static double Clamp(this double x, double min, double max) => Math.Min(max, Math.Max(min, x));
 
+
+		/// <summary>
+		/// Re-maps a number from one range to another.
+		/// </summary>
+		/// <param name="input">the incoming value to be converted</param>
+		/// <param name="inputLower">lower bound of the value's current range</param>
+		/// <param name="inputUpper">upper bound of the value's current range</param>
+		/// <param name="outputMin">lower bound of the value's target range</param>
+		/// <param name="outputMax">upper bound of the value's target range</param>
+		/// <returns></returns>
+		public static float Map(float input, float inputLower, float inputUpper, float outputMin, float outputMax)
+		{
+			return Lerp(outputMin, outputMax, Normalize(input, inputLower, inputUpper));
+		}
+
 		/// <summary>
 		/// Returns the number of mipmap levels (floor convention) required for MIP mapped filtering of an image.
 		/// </summary>
