@@ -3,7 +3,7 @@
 namespace Zenseless.Patterns
 {
 	/// <summary>
-	/// Contains static/extension methods for System.FMath
+	/// Contains static/extension methods for System.Math[F]
 	/// </summary>
 	public static partial class MathHelper
 	{
@@ -59,7 +59,7 @@ namespace Zenseless.Patterns
 		public static float Normalize(uint v) => v / 255f;
 
 		/// <summary>
-		/// Finds the indices into a sorted array that encompass a given value
+		/// Finds the indices of a sorted array that encompass a given value
 		/// </summary>
 		/// <typeparam name="TValue"></typeparam>
 		/// <param name="sorted">a sorted array of values</param>
