@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace Zenseless.Patterns
 {
@@ -26,7 +25,6 @@ namespace Zenseless.Patterns
 		{
 			if (instance is null) throw new ArgumentNullException(nameof(instance));
 			var type = typeof(TYPE);
-			Debug.WriteLineIf(Contains<TYPE>(), $"Overwriting registered type instance {type}.");
 			_types[type] = instance;
 		}
 
