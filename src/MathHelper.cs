@@ -43,7 +43,6 @@ namespace Zenseless.Patterns
 		/// <returns>clamped version of x</returns>
 		public static double Clamp(this double x, double min, double max) => Math.Min(max, Math.Max(min, x));
 
-
 		/// <summary>
 		/// Re-maps a number from one range to another.
 		/// </summary>
@@ -53,7 +52,7 @@ namespace Zenseless.Patterns
 		/// <param name="outputMin">lower bound of the value's target range</param>
 		/// <param name="outputMax">upper bound of the value's target range</param>
 		/// <returns></returns>
-		public static float Map(float input, float inputLower, float inputUpper, float outputMin, float outputMax)
+		public static float Map(this float input, float inputLower, float inputUpper, float outputMin, float outputMax)
 		{
 			return Lerp(outputMin, outputMax, Normalize(input, inputLower, inputUpper));
 		}
@@ -71,7 +70,7 @@ namespace Zenseless.Patterns
 		/// </summary>
 		/// <param name="v">input in range [0,255]</param>
 		/// <returns>range [0,1]</returns>
-		public static float Normalize(uint v) => v / 255f;
+		public static float Normalize(this uint v) => v / 255f;
 
 		/// <summary>
 		/// Finds the indices of a sorted array that encompass a given value
