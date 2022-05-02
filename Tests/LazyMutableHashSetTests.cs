@@ -37,7 +37,7 @@ namespace Zenseless.Patterns.Tests
 			foreach (var i in hs)
 			{
 				count++;
-				hs.Add(i + 1); //delay add
+				hs.Add(i + 1); //delayed add
 			}
 			var expected = input.Concat(input.Select(i => i + 1)).ToArray();
 			Assert.AreEqual(count, input.Length);

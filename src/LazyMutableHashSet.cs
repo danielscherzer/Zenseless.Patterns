@@ -8,14 +8,14 @@ namespace Zenseless.Patterns
 	///  Uses <see cref="HashSet{T}"/> with O(1) add and removal to implement a lazy mutable iteration
 	///  When iterating add and removes are buffered and applied after iteration.
 	/// </summary>
-	/// <typeparam name="DataType"></typeparam>
-	public class LazyMutableHashSet<DataType> : IEnumerable<DataType>, ICollection<DataType>
+	/// <typeparam name="T">The type of elements in the data structure.</typeparam>
+	public class LazyMutableHashSet<T> : ICollection<T>, IReadOnlyCollection<T>
 	{
 		/// <summary>
-		/// Queue a new item to add to the hash set
+		/// Queue a new item to add to the hash set after finishing all iterations.
 		/// </summary>
 		/// <param name="item">the item to add</param>
-		public void Add(DataType item)
+		public void Add(T item)
 		{
 			if (IsIterating)
 			{
@@ -29,10 +29,10 @@ namespace Zenseless.Patterns
 		}
 
 		/// <summary>
-		/// Queue a number of items to add to the hash set.
+		/// Queue a number of items to add to the hash set after finishing all iterations.
 		/// </summary>
 		/// <param name="other">The items to add</param>
-		public void Add(IEnumerable<DataType> other)
+		public void Add(IEnumerable<T> other)
 		{
 			if (IsIterating)
 			{
@@ -46,10 +46,10 @@ namespace Zenseless.Patterns
 		}
 
 		/// <summary>
-		/// Queue an item for removal from the hash set
+		/// Queue an item for removal from the hash set after finishing all iterations.
 		/// </summary>
 		/// <param name="item">the item to remove</param>
-		public void Remove(DataType item)
+		public void Remove(T item)
 		{
 			if (IsIterating)
 			{
@@ -66,7 +66,7 @@ namespace Zenseless.Patterns
 		/// Get an enumerator on the items of the hash set. After iteration is finished queued items for adding or removal are resolved
 		/// </summary>
 		/// <returns></returns>
-		public IEnumerator<DataType> GetEnumerator()
+		public IEnumerator<T> GetEnumerator()
 		{
 			++_iterationCount; // could be called recursively, so a boolean is not enough (iterate while iterating)
 			foreach (var item in _items)
@@ -105,16 +105,16 @@ namespace Zenseless.Patterns
 		/// </summary>
 		/// <param name="item">The item to query</param>
 		/// <returns></returns>
-		public bool Contains(DataType item) => _items.Contains(item);
+		public bool Contains(T item) => _items.Contains(item);
 
 		/// <summary>
 		/// Copies the elements of the hash set to an array, starting at the specified array index.
 		/// </summary>
 		/// <param name="array">The one-dimensional array that is the destination of the elements copied from the hash set. The array must have zero-based indexing.</param>
 		/// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
-		public void CopyTo(DataType[] array, int arrayIndex) => _items.CopyTo(array, arrayIndex);
+		public void CopyTo(T[] array, int arrayIndex) => _items.CopyTo(array, arrayIndex);
 
-		bool ICollection<DataType>.Remove(DataType item)
+		bool ICollection<T>.Remove(T item)
 		{
 			var contains = _items.Contains(item);
 			Remove(item);
@@ -122,16 +122,17 @@ namespace Zenseless.Patterns
 		}
 
 		private int _iterationCount = 0;
-		private readonly HashSet<DataType> _items = new(); // O(1) add and removal
-		private readonly HashSet<DataType> _toRemove = new();
-		private readonly HashSet<DataType> _toAdd = new();
+		private readonly HashSet<T> _items = new(); // O(1) add and removal
+		private readonly HashSet<T> _toRemove = new();
+		private readonly HashSet<T> _toAdd = new();
 		private bool IsIterating => 0 < _iterationCount;
 
 		/// <summary>
 		/// Gets the number of elements that are currently in the set.
+		/// Does not count delayed add and removes while iterating
 		/// </summary>
-		public int Count => _items.Count + _toAdd.Count - _toRemove.Count;
+		public int Count => _items.Count;
 
-		bool ICollection<DataType>.IsReadOnly => false;
+		bool ICollection<T>.IsReadOnly => false;
 	}
 }
