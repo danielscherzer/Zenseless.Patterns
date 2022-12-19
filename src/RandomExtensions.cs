@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Zenseless.Patterns
 {
@@ -17,6 +18,21 @@ namespace Zenseless.Patterns
 		public static float NextFloat(this Random random, float min = 0f, float max = 1f)
 		{
 			return min + (max - min) * (float)random.NextDouble(); //TODO: net6 has NextSingle, but speed seems same
+		}
+
+		/// <summary>
+		/// Fisher-Yates shuffle algorithm: https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Fisher_and_Yates'_original_method
+		/// </summary>
+		/// <typeparam name="TType">Element type</typeparam>
+		/// <param name="random">An instance of the <see cref="Random"/> class.</param>
+		/// <param name="input">Input list of numbers</param>
+		public static void Shuffle<TType>(this Random random, IList<TType> input)
+		{
+			for (int i = input.Count - 1; i > 0; --i)
+			{
+				int rndId = random.Next(i + 1);
+				(input[rndId], input[i]) = (input[i], input[rndId]);
+			}
 		}
 	}
 }
