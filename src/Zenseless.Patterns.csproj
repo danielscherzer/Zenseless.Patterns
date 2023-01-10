@@ -4,7 +4,9 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
+    <PublishDocumentationFile>true</PublishDocumentationFile>
     <DocumentationFile>bin/Zenseless.Patterns.xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup>
