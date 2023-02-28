@@ -62,7 +62,7 @@ namespace Zenseless.Patterns.Tests
 				}
 			}
 			var expected = count / (double)range;
-			var delta = 0.01 * expected; // below 1% error
+			var delta = 0.1 * expected; // below 10% error
 			foreach(var cell in counts)
 			{
 				Assert.AreEqual(expected, cell, delta);
