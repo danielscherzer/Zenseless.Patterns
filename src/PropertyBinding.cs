@@ -18,7 +18,7 @@ namespace Zenseless.Patterns
 		/// </summary>
 		public PropertyBinding()
 		{
-			PropertyChanged += ViewModel_PropertyChanged;
+			PropertyChanged += InvokePropertyChanged;
 		}
 
 		/// <summary>
@@ -193,7 +193,7 @@ namespace Zenseless.Patterns
 			throw new InvalidOperationException("Please provide a valid property expression, like '() => instance.PropertyName'.");
 		}
 
-		private void ViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+		private void InvokePropertyChanged(object? sender, PropertyChangedEventArgs e)
 		{
 			if (e.PropertyName is null) return;
 			if (handlerData.TryGetValue(e.PropertyName, out var handlerList))

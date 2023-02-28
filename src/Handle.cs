@@ -4,7 +4,7 @@
 	/// Implements a type safe <see cref="int"/> handle. A handle is an abstract reference to a resource that is used when application software references blocks of memory or objects that are managed by another system. <see href="https://en.wikipedia.org/wiki/Handle_%28computing%29">Wikipedia</see>
 	/// </summary>
 	/// <typeparam name="DataType"></typeparam>
-	public struct Handle<DataType>
+	public readonly struct Handle<DataType>
 	{
 		/// <summary>
 		/// Create a new instance with the given id

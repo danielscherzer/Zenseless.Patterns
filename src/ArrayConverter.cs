@@ -48,7 +48,7 @@ namespace Zenseless.Patterns
 			try
 			{
 				IntPtr pointer = handle.AddrOfPinnedObject();
-				Marshal.Copy(pointer + byteOffset, destination, 0, destination.Length); // need to use Marshalling because of data type conversion
+				Marshal.Copy(pointer + byteOffset, destination, 0, destination.Length);
 				return destination;
 			}
 			finally

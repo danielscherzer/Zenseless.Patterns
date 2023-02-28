@@ -35,7 +35,7 @@ namespace Zenseless.Patterns
 		/// Calls <see cref="IDisposable.Dispose()"/> on all fields of type <see cref="IDisposable"/> found on the given object.
 		/// Also calls <see cref="IDisposable.Dispose()"/> on each item of fields of type <see cref="IEnumerable"/>
 		/// </summary>
-		/// <param name="obj"></param>
+		/// <param name="obj">class instance for which to dispose the fields.</param>
 		public static void DisposeAllFields(object obj)
 		{
 			// get all fields, including backing fields for properties
