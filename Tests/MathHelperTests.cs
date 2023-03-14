@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Numerics;
 
 namespace Zenseless.Patterns.Tests
 {
@@ -46,6 +47,17 @@ namespace Zenseless.Patterns.Tests
 		{
 			var output = values.FindEncompassingIndices(value);
 			Assert.AreEqual((lowerId, upperId), output);
+		}
+
+		[DataTestMethod()]
+		[DataRow(0, 0)]
+		[DataRow(0.3f, 0.3f)]
+		[DataRow(1.3f, 0.3f)]
+		[DataRow(-1.3f, 0.3f)]
+		public void FractTest(float input, float expected)
+		{
+			var delta = 0.0000001f;
+			Assert.AreEqual(expected, input.Fract(), delta);
 		}
 	}
 }

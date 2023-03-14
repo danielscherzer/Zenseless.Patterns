@@ -152,7 +152,7 @@ namespace Zenseless.Patterns
 		/// </summary>
 		/// <param name="v">Input floating-point number</param>
 		/// <returns></returns>
-		public static float Fract(float v)
+		public static float Fract(this float v)
 		{
 			var abs = MathF.Abs(v);
 			return abs - (int)abs;
