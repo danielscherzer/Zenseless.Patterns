@@ -143,8 +143,19 @@ namespace Zenseless.Patterns
 		/// Returns the integer part of the specified floating-point number. 
 		/// Works not for constructs like <code>1f - float.epsilon</code> because this is outside of floating point precision
 		/// </summary>
-		/// <param name="x">Input floating-point number</param>
+		/// <param name="v">Input floating-point number</param>
 		/// <returns>The integer part.</returns>
-		public static int FastTruncate(this float x) => (int)x;
+		public static int FastTruncate(this float v) => (int)v;
+
+		/// <summary>
+		/// Returns the fractional part of the floating-point number.
+		/// </summary>
+		/// <param name="v">Input floating-point number</param>
+		/// <returns></returns>
+		public static float Fract(float v)
+		{
+			var abs = MathF.Abs(v);
+			return abs - (int)abs;
+		}
 	}
 }
