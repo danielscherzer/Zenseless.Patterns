@@ -28,9 +28,20 @@ namespace Zenseless.Patterns
 		/// <param name="input">Input list of numbers</param>
 		public static void Shuffle<TType>(this Random random, IList<TType> input)
 		{
+			Shuffle(input, random.Next);
+		}
+
+		/// <summary>
+		/// Fisher-Yates shuffle algorithm: https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Fisher_and_Yates'_original_method
+		/// </summary>
+		/// <typeparam name="TType">Element type</typeparam>
+		/// <param name="input">List of numbers to shuffle</param>
+		/// <param name="random">A <seealso cref="Func{T, TResult}"/> that returns a random integer in the range [0, parameter - 1]</param>
+		public static void Shuffle<TType>(this IList<TType> input, Func<int, int> random)
+		{
 			for (int i = input.Count - 1; i > 0; --i)
 			{
-				int rndId = random.Next(i + 1);
+				int rndId = random(i + 1);
 				(input[rndId], input[i]) = (input[i], input[rndId]);
 			}
 		}
