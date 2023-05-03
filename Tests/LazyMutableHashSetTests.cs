@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Zenseless.Patterns.Tests
@@ -10,11 +12,32 @@ namespace Zenseless.Patterns.Tests
 		public void AddTest()
 		{
 			var input = new int[] { 5, 1, 0, 55 };
-			var hs = new LazyMutableHashSet<int> { input };
+			LazyMutableHashSet<int> hs = new();
+			hs.AddRange(input);
 			//add again
 			hs.Add(input[0]);
 			hs.Add(input[2]);
+			Assert.AreEqual(input.Length, hs.Count);
 			CollectionAssert.AreEquivalent(input, hs.ToArray());
+		}
+
+		[TestMethod()]
+		public void AddEnumeratorTest()
+		{
+			LazyMutableHashSet<IEnumerator> hs = new();
+			List<IEnumerator> data = new()
+			{
+				Data(), Data()
+			};
+
+			static IEnumerator Data()
+			{
+				yield return 1;
+				yield return 2;
+				yield return 3;
+			}
+			hs.AddRange(data);
+			Assert.AreEqual(data.Count, hs.Count);
 		}
 
 
@@ -31,8 +54,9 @@ namespace Zenseless.Patterns.Tests
 		public void GetEnumeratorTestAdd()
 		{
 			var input = new int[] { 5, 1, 3, 55 };
+			LazyMutableHashSet<int> hs = new();
+			hs.AddRange(input);
 
-			var hs = new LazyMutableHashSet<int> { input };
 			int count = 0;
 			foreach (var i in hs)
 			{
@@ -48,8 +72,9 @@ namespace Zenseless.Patterns.Tests
 		public void GetEnumeratorTestAddAndRemove()
 		{
 			var input = new int[] { 5, 1, 3, 55 };
+			LazyMutableHashSet<int> hs = new();
+			hs.AddRange(input);
 
-			var hs = new LazyMutableHashSet<int> { input };
 			foreach (var i in hs)
 			{
 				hs.Add(i + 1); //delay add
@@ -62,8 +87,9 @@ namespace Zenseless.Patterns.Tests
 		public void GetEnumeratorTestRemoveAndAdd()
 		{
 			var input = new int[] { 5, 1, 3, 55 };
+			LazyMutableHashSet<int> hs = new();
+			hs.AddRange(input);
 
-			var hs = new LazyMutableHashSet<int> { input };
 			foreach (var i in hs)
 			{
 				hs.Remove(i + 1);
@@ -78,8 +104,9 @@ namespace Zenseless.Patterns.Tests
 		public void GetEnumeratorTestRecursive()
 		{
 			var input = new int[] { 5, 1, 3, 55 };
+			LazyMutableHashSet<int> hs = new();
+			hs.AddRange(input);
 
-			var hs = new LazyMutableHashSet<int> { input };
 			foreach (var i in hs)
 			{
 				hs.Add(i + 1); //delayed add
@@ -95,8 +122,9 @@ namespace Zenseless.Patterns.Tests
 		public void GetEnumeratorTestRecursive2()
 		{
 			var input = new int[] { 5, 1, 3, 55 };
+			LazyMutableHashSet<int> hs = new();
+			hs.AddRange(input);
 
-			var hs = new LazyMutableHashSet<int> { input };
 			foreach (var i in hs)
 			{
 				hs.Add(i + 1); //delayed add

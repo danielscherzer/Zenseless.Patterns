@@ -32,8 +32,9 @@ namespace Zenseless.Patterns
 		/// Queue a number of items to add to the hash set after finishing all iterations.
 		/// </summary>
 		/// <param name="other">The items to add</param>
-		public void Add(IEnumerable<T> other)
+		public void AddRange(IEnumerable<T> other)
 		{
+			//Using a different name for AddRange than Add is neccessary if T can be cast to IEnumerable<T>
 			if (IsIterating)
 			{
 				_toAdd.UnionWith(other);
