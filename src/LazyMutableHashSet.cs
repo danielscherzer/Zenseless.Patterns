@@ -130,9 +130,9 @@ namespace Zenseless.Patterns
 
 		/// <summary>
 		/// Gets the number of elements that are currently in the set.
-		/// Does not count delayed add and removes while iterating
+		/// Accounts for delayed add and removes while iterating
 		/// </summary>
-		public int Count => _items.Count;
+		public int Count => _items.Count + _toAdd.Count - _toRemove.Count;
 
 		bool ICollection<T>.IsReadOnly => false;
 	}
