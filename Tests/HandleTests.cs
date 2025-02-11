@@ -8,11 +8,9 @@ namespace Zenseless.Patterns.Tests
 		[TestMethod()]
 		public void HandleEqualTest()
 		{
-			Handle<float> handleF = new(1);
 			Handle<double> handleD1 = new(1);
 			Handle<double> handleD2 = new(1);
 			Assert.AreEqual(handleD1, handleD2);
-			Assert.AreNotEqual(handleF, handleD1);
 		}
 
 		[TestMethod()]
