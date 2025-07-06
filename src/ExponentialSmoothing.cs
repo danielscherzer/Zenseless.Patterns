@@ -42,7 +42,7 @@ namespace Zenseless.Patterns
 		/// <param name="value">The value.</param>
 		public void NewSample(double value)
 		{
-			SmoothedValue = currentWeight * value + (1.0 - currentWeight) * SmoothedValue;
+			SmoothedValue = (currentWeight * value) + ((1.0 - currentWeight) * SmoothedValue);
 			currentWeight = Math.Max(stableWeight, currentWeight - stableWeight); //needed to avoid initial drift
 		}
 

@@ -17,7 +17,7 @@ namespace Zenseless.Patterns
 		/// <returns>A 32-bit <see cref="float"/> greater than or equal to <paramref name="min"/> and less than <paramref name="max"/></returns>
 		public static float NextFloat(this Random random, float min = 0f, float max = 1f)
 		{
-			return min + (max - min) * (float)random.NextDouble(); //TODO: net6 has NextSingle, but speed seems same
+			return min + ((max - min) * (float)random.NextDouble()); //TODO: net6 has NextSingle, but speed seems same
 		}
 
 		/// <summary>
