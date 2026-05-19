@@ -1,7 +1,7 @@
 ﻿namespace Zenseless.Patterns;
 
 using System;
-using static MathHelper;
+using static MathExtensions;
 
 /// <summary>
 /// Provides methods for generating pseudo-random numbers, deterministic seeds, and noise.

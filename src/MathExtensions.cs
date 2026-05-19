@@ -5,7 +5,7 @@ namespace Zenseless.Patterns;
 /// <summary>
 /// Contains static/extension methods for System.Math[F]
 /// </summary>
-public static partial class MathHelper
+public static partial class MathExtensions
 {
 	/// <summary>
 	/// Clamp the input value x in between min and max. 

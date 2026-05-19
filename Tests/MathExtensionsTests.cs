@@ -3,7 +3,7 @@
 namespace Zenseless.Patterns.Tests;
 
 [TestClass()]
-public class MathHelperTests
+public class MathExtensionsTests
 {
 	[DataTestMethod()]
 	[DataRow(0f, 0)]
@@ -30,7 +30,7 @@ public class MathHelperTests
 	[DataRow(256, 9)]
 	public void MipMapLevelsSquareTest(int inputSize, int expected)
 	{
-		var output = MathHelper.MipMapLevelCount(inputSize, inputSize);
+		var output = MathExtensions.MipMapLevelCount(inputSize, inputSize);
 		Assert.AreEqual(expected, output);
 	}
 
@@ -67,7 +67,7 @@ public class MathHelperTests
 	public void SmoothstepTest(float min, float max, float value, float expected)
 	{
 		var delta = 0.0000001f;
-		var result = MathHelper.Smoothstep(min, max, value);
+		var result = MathExtensions.Smoothstep(min, max, value);
 		Assert.AreEqual(expected, result, delta);
 	}
 }
